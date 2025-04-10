@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- daisyUi cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- google font cdn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        .font-lato {
+            font-family: "Lato", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+            /* background-color: #0e7a8126; */
+        }
+        .active{
+            background-color: burlywood;
+        }
+    </style>
+</head>
+
+<body class="font-lato">
+    <!-- navbar -->
+    <header>
+        <nav class="bg-slate-100 shadow-lg ">
+            <div class="navbar w-11/12 mx-auto">
+                <div class="navbar-start flex justify-between w-full flex-1">
+                    <div class="flex gap-2 items-center">
+                        <img class="w-5 h-5" src="images/logo.webp" alt="">
+                        <h1 class="text-xl font-extrabold">Peddy</h1>
+                    </div>
+                    <div class="dropdown relative">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-40 p-2 shadow absolute right-[-15px] top-11 bg-slate-200 font-normal">
+                            <li><a>Home</a></li>
+                            <li><a>Shop</a></li>
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1 text-base font-normal">
+                        <li><a>Home</a></li>
+                        <li><a>Shop</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-end hidden lg:flex flex-1">
+                    <i class="bi bi-person-circle text-2xl text-slate-600"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- banner section -->
+
+        <div class="w-11/12 mx-auto my-10 text-center font-normal">
+            <div class="md:w-5/12 mx-auto">
+                <p class="text-slate-500 md:text-lg text-base">Bringing Families Together ❤️‍🔥</p>
+                <h1 class="md:text-5xl text-3xl font-bold my-2">Your Path to Adoption Starts Here</h1>
+                <p class="md:text-base text-sm">It is a long established fact that a reader will be distracted by the readable
+                    content of a page when
+                    looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+                <button class="btn my-5 bg-[#0E7A81] text-white hover:bg-[#0a6c72]">View more</button>
+            </div>
+            <img class="md:w-3/6 mx-auto" src="images/pet.webp" alt="">
+        </div>
+    </header>
+    <main class="w-11/12 mx-auto mb-20">
+        <div class="md:w-5/12 mx-auto text-center my-10 font-normal">
+            <h1 class="md:text-4xl text-2xl my-2 font-bold">Adopt Your Best Friend</h1>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+        </div>
+
+        <!-- Category btn sectin -->
+        <div id="category-container" class="lg:w-8/12 mx-auto grid md:grid-cols-4 grid-cols-2 gap-3"></div>
+    </main>
+</body>
+
+<script src="js/script.js"></script>
+
+</html>
