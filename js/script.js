@@ -30,6 +30,48 @@ function lodeCategoryData(category, id) {
         })
 }
 
+// lode Details
+
+function lodeDetails(id) {
+
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            const modalContainer = document.getElementById('modal-container');
+            modalContainer.innerHTML = `
+                <img class="w-full"  src="${data.petData.image}">
+                <h1 class="text-2xl font-bold pl-4 mt-3">${data.petData.pet_name}</h1>
+                <div class="flex" >
+                    <div>
+                        <div class="flex gap-2 my-1 pl-4">
+                            <i class="bi bi-grid"></i>
+                            <p>Breed: ${data.petData.breed ? `<span>${data.petData.breed}</span>` : 'No found'}</p>      
+                        </div>
+                        <div class="flex gap-2 pl-4">
+                            <i class="bi bi-calendar4"></i>
+                            <p>Birth: ${data.petData.date_of_birth ? `<span>${data.petData.date_of_birth}</span>` : 'No found'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex gap-2 my-1 pl-4">
+                            <i class="bi bi-gender-trans"></i>
+                            <p>Gender: ${data.petData.gender ? `<span>${data.petData.gender}</span>` : "No found"} </p>
+                        </div>
+                        <div class="flex gap-2 pb-2 pl-4">
+                            <i class="bi bi-currency-dollar text-lg"></i>
+                            <p>Price: ${data.petData.price ? `<span>${data.petData.price}</span>` : "No found"}<i class="bi bi-currency-dollar"></i></p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="text-slate-200">
+                 <h1 class="text-lg font-bold my-2">Details Information<h1>
+                 <p>${data.petData.pet_details}</p>
+               `
+        })
+        .catch(error => console.log(error))
+    document.getElementById('customModal').showModal();
+}
+
 
 function handelCategory(categories) {
     const categoryContainer = document.getElementById('category-container');
@@ -70,6 +112,7 @@ function handelPetsCard(pets) {
     }
     for (const pet of pets) {
         const card = document.createElement('div');
+        // console.log(pet)
         cardContainer.classList.add('grid')
         card.innerHTML = `
             <div class="card bg-base-100 shadow-slate-300 shadow-lg">
@@ -95,9 +138,9 @@ function handelPetsCard(pets) {
                         <p>Price: ${pet.price ? `<span>${pet.price}</span>` : "No found"}<i class="bi bi-currency-dollar"></i></p>
                     </div>
                     <div class="mt-4 flex justify-around">
-                        <i class="bi bi-hand-thumbs-up btn text-lg border-1 border-[#0e7a8126]"></i>
+                        <i onclick="showimg('${pet.image}')"  class="bi bi-hand-thumbs-up btn text-lg border-1 border-[#0e7a8126]"></i>
                         <button class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Adopt</button>
-                        <button class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Details</button>
+                        <button onclick="lodeDetails(${pet.petId})" class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Details</button>
                     </div>
                 </div>
            </div>
@@ -107,7 +150,14 @@ function handelPetsCard(pets) {
     }
 }
 
-
+const showimg = (img) => {
+    const imgContainer = document.getElementById('image-container')
+    const imgCard = document.createElement('p');
+    imgCard.innerHTML = `
+      <img src ="${img}">
+   `
+    imgContainer.appendChild(imgCard)
+}
 
 categoryBtn()
 lodeAllData()

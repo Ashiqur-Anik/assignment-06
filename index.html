@@ -23,14 +23,12 @@
             font-family: "Lato", sans-serif;
             font-weight: 100;
             font-style: normal;
-            /* background-color: #0e7a8126;; */
         }
 
         .active {
             box-sizing: border-box;
             border: 1.5px solid rgb(14, 122, 129);
             border-radius: 120px;
-
             background-color: rgba(14, 122, 129, 0.1);
         }
     </style>
@@ -86,13 +84,14 @@
                     readable
                     content of a page when
                     looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-                <button class="btn my-5 bg-[#0E7A81] text-white hover:bg-[#0a6c72]">View more</button>
+                <a href="#main-section" class="btn my-5 bg-[#0E7A81] text-white hover:bg-[#0a6c72]">View more</a>
+                
             </div>
             <img class="md:w-3/6 mx-auto" src="images/pet.webp" alt="">
         </div>
     </header>
 
-    <main class="w-11/12 mx-auto mb-20">
+    <main id="main-section" class="w-11/12 mx-auto mb-20">
         <!-- about section -->
         <div class="md:w-5/12 mx-auto text-center my-10 font-normal">
             <h1 class="md:text-4xl text-2xl my-2 font-bold">Adopt Your Best Friend</h1>
@@ -116,11 +115,25 @@
 
             </div>
 
-            <div class="lg:w-1/6 md:border-2 md:border-slate-100 rounded-md">
-
+            <div class="lg:w-1/6 mx-auto border-2 border-slate-100 rounded-md mt-10 lg:mt-0">
+                <div id="image-container" class="grid lg:grid-cols-2 md:grid-cols-3 grid-cols-2 m-2 gap-2">
+                </div>
             </div>
         </div>
+        <!-- modal -->
+        <button class="btn hidden" onclick="customModal.showModal()"></button>
+        <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="modal-container" class="font-normal"></div>
+                <div class="modal-action">
+                    <form method="dialog" class="w-full ">
+                        <button class="btn w-full bg-[#0e7a811a] border-1 border-[#0e7a8133]">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
     </main>
+
 </body>
 
 <script src="js/script.js"></script>
