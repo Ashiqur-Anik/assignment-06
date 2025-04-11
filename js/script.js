@@ -1,9 +1,13 @@
+// lode all categories
+
 function categoryBtn() {
     fetch('https://openapi.programming-hero.com/api/peddy/categories')
         .then(res => res.json())
         .then(data => handelCategory(data.categories))
         .catch(error => console.log(error))
 }
+
+// fetch all pets
 
 function lodeAllData() {
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
@@ -12,6 +16,16 @@ function lodeAllData() {
         .catch(error => console.log(error))
 }
 
+// lode category
+
+function lodeCategoryData(category) {
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+        .then(res => res.json())
+        .then(data => {
+            handelPets(data.data)
+
+        })
+}
 
 
 function handelCategory(categories) {
@@ -20,7 +34,7 @@ function handelCategory(categories) {
         const categoryBtn = document.createElement('div');
         categoryBtn.classList.add("flex", "justify-center")
         categoryBtn.innerHTML = `
-             <button class="btn w-36 py-7 px-10 border-2 border-[#0e7a8126] bg-white">
+             <button  onclick="lodeCategoryData('${category.category}')" class="btn w-36 py-7 px-10 border-2 border-[#0e7a8126] bg-white">
                 <img class="w-8" src="${category.category_icon}">
                 <h1 class="font-bold text-base fon">${category.category}</h1>
              </button>
@@ -31,23 +45,47 @@ function handelCategory(categories) {
 
 function handelPets(pets) {
     const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = '';
+    if (pets.length == 0) {
+        cardContainer.classList.remove('grid')
+        cardContainer.classList.add('text-center','font-normal')
+        cardContainer.innerHTML = `
+        <img class="w-40 mx-auto" src="images/error.webp" alt="">
+        <h1>No Information Available</h1>
+        <p class="lg:w-4/6 md:5/6 mx-auto">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+        its layout. The point of using Lorem Ipsum is that it has a.</p>
+        `
+    }
     for (const pet of pets) {
-        console.log(pet)
         const card = document.createElement('div');
+        cardContainer.classList.add('grid')
         card.innerHTML = `
             <div class="card bg-base-100 shadow-slate-300 shadow-lg">
                 <figure class="h-[200px]">
                         <img class="w-full h-full object-cover" src="${pet.image}">
                 </figure>
-                <div class="pl-4 pt-2 font-normal">
-                    <h1 class="text-2xl font-bold">${pet.pet_name}</h1>
-                    <div class="flex gap-2 my-2">
+                <div class="pt-2 pb-5 font-normal">
+                    <h1 class="text-2xl font-bold pl-4">${pet.pet_name}</h1>
+                    <div class="flex gap-2 my-1 pl-4">
                         <i class="bi bi-grid"></i>
-                        <p>Breed: ${pet.breed ? `<span>${pet.breed}</span>`:'No found'}</p>      
+                        <p>Breed: ${pet.breed ? `<span>${pet.breed}</span>` : 'No found'}</p>      
                     </div>
-                    <div>
+                    <div class="flex gap-2 pl-4">
                          <i class="bi bi-calendar4"></i>
-                         
+                         <p>Birth: ${pet.date_of_birth ? `<span>${pet.date_of_birth}</span>` : 'No found'}</p>
+                    </div>
+                    <div class="flex gap-2 my-1 pl-4">
+                        <i class="bi bi-gender-trans"></i>
+                        <p>Gender: ${pet.gender ? `<span>${pet.gender}</span>` : "No found"} </p>
+                    </div>
+                    <div class="flex gap-2 pb-2 pl-4">
+                       <i class="bi bi-currency-dollar text-lg"></i>
+                        <p>Price: ${pet.price ? `<span>${pet.price}</span>` : "No found"}<i class="bi bi-currency-dollar"></i></p>
+                    </div>
+                    <div class="mt-4 flex justify-around">
+                        <i class="bi bi-hand-thumbs-up btn text-lg border-1 border-[#0e7a8126]"></i>
+                        <button class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Adopt</button>
+                        <button class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Details</button>
                     </div>
                 </div>
            </div>
