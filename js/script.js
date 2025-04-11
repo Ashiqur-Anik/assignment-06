@@ -12,17 +12,20 @@ function categoryBtn() {
 function lodeAllData() {
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
         .then(res => res.json())
-        .then(data => handelPets(data.pets))
+        .then(data => handelPetsCard(data.pets))
         .catch(error => console.log(error))
 }
 
 // lode category
 
-function lodeCategoryData(category) {
+function lodeCategoryData(category, id) {
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
         .then(res => res.json())
         .then(data => {
-            handelPets(data.data)
+            const categoryBtn = document.getElementById(`btn-${id}`)
+            removeActive();
+            categoryBtn.classList.add('active')
+            handelPetsCard(data.data)
 
         })
 }
@@ -34,7 +37,7 @@ function handelCategory(categories) {
         const categoryBtn = document.createElement('div');
         categoryBtn.classList.add("flex", "justify-center")
         categoryBtn.innerHTML = `
-             <button  onclick="lodeCategoryData('${category.category}')" class="btn w-36 py-7 px-10 border-2 border-[#0e7a8126] bg-white">
+             <button id="btn-${category.id}" onclick="lodeCategoryData('${category.category}',${category.id})" class="btn w-36 py-7 px-10 border-2 border-[#0e7a8126] bg-white rounded-lg remove-active">
                 <img class="w-8" src="${category.category_icon}">
                 <h1 class="font-bold text-base fon">${category.category}</h1>
              </button>
@@ -43,12 +46,21 @@ function handelCategory(categories) {
     }
 }
 
-function handelPets(pets) {
+function removeActive() {
+    const buttons = document.getElementsByClassName('remove-active');
+    for (let button of buttons) {
+        button.classList.remove('active')
+    }
+}
+
+
+
+function handelPetsCard(pets) {
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
     if (pets.length == 0) {
         cardContainer.classList.remove('grid')
-        cardContainer.classList.add('text-center','font-normal')
+        cardContainer.classList.add('text-center', 'font-normal')
         cardContainer.innerHTML = `
         <img class="w-40 mx-auto" src="images/error.webp" alt="">
         <h1>No Information Available</h1>
