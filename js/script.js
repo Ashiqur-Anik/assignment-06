@@ -33,7 +33,6 @@ function lodeCategoryData(category, id) {
 // lode Details
 
 function lodeDetails(id) {
-
     fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
         .then(res => res.json())
         .then(data => {
@@ -112,7 +111,6 @@ function handelPetsCard(pets) {
     }
     for (const pet of pets) {
         const card = document.createElement('div');
-        // console.log(pet)
         cardContainer.classList.add('grid')
         card.innerHTML = `
             <div class="card bg-base-100 shadow-slate-300 shadow-lg">
@@ -138,7 +136,7 @@ function handelPetsCard(pets) {
                         <p>Price: ${pet.price ? `<span>${pet.price}</span>` : "No found"}<i class="bi bi-currency-dollar"></i></p>
                     </div>
                     <div class="mt-4 flex justify-around">
-                        <i onclick="showimg('${pet.image}')"  class="bi bi-hand-thumbs-up btn text-lg border-1 border-[#0e7a8126]"></i>
+                        <i id="likeBtn-${pet.petId}" onclick="showimg('${pet.image}',${pet.petId})"  class="bi bi-hand-thumbs-up btn text-lg border-1 border-[#0e7a8126]"></i>
                         <button class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Adopt</button>
                         <button onclick="lodeDetails(${pet.petId})" class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Details</button>
                     </div>
@@ -150,9 +148,11 @@ function handelPetsCard(pets) {
     }
 }
 
-const showimg = (img) => {
+const showimg = (img,id) => {
     const imgContainer = document.getElementById('image-container')
-    const imgCard = document.createElement('p');
+    const imgCard = document.createElement('div');
+    const likeBtn = document.getElementById(`likeBtn-${id}`);
+    likeBtn.classList.add('text-red-500')
     imgCard.innerHTML = `
       <img src ="${img}">
    `
