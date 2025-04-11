@@ -10,15 +10,21 @@ function categoryBtn() {
 // fetch all pets
 
 function lodeAllData() {
-    fetch('https://openapi.programming-hero.com/api/peddy/pets')
-        .then(res => res.json())
-        .then(data => handelPetsCard(data.pets))
-        .catch(error => console.log(error))
+    showSpinner();
+    setTimeout(() => {
+        removeSpinner();
+        fetch('https://openapi.programming-hero.com/api/peddy/pets')
+            .then(res => res.json())
+            .then(data => handelPetsCard(data.pets))
+            .catch(error => console.log(error))
+    }, 2000)
+
 }
 
 // lode category
 
 function lodeCategoryData(category, id) {
+    
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
         .then(res => res.json())
         .then(data => {
@@ -148,7 +154,7 @@ function handelPetsCard(pets) {
     }
 }
 
-const showimg = (img,id) => {
+const showimg = (img, id) => {
     const imgContainer = document.getElementById('image-container')
     const imgCard = document.createElement('div');
     const likeBtn = document.getElementById(`likeBtn-${id}`);
@@ -157,6 +163,15 @@ const showimg = (img,id) => {
       <img src ="${img}">
    `
     imgContainer.appendChild(imgCard)
+}
+
+function showSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.classList.remove('hidden')
+}
+function removeSpinner() {
+    const spinner = document.getElementById('spinner');
+    spinner.classList.add('hidden')
 }
 
 categoryBtn()
