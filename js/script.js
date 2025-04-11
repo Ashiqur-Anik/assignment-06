@@ -41,7 +41,7 @@ function lodeDetails(id) {
             modalContainer.innerHTML = `
                 <img class="w-full"  src="${data.petData.image}">
                 <h1 class="text-2xl font-bold pl-4 mt-3">${data.petData.pet_name}</h1>
-                <div class="flex" >
+                <div class="md:flex" >
                     <div>
                         <div class="flex gap-2 my-1 pl-4">
                             <i class="bi bi-grid"></i>
