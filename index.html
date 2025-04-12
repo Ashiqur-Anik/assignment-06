@@ -113,7 +113,7 @@
             <div id="card-container"
                 class="lg:w-5/6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 md:border-2 md:border-slate-100 md:p-5 bg-white rounded-md relative">
                 <span class="absolute inset-0 flex justify-center">
-                    <span id="spinner" class="loading loading-infinity loading-xl text-neutral w-10 hidden"></span>
+                    <p id="spinner" class="loading loading-infinity loading-xl text-neutral w-10 hidden"></span>
                 </span>
             </div>
 
@@ -122,8 +122,9 @@
                 </div>
             </div>
         </div>
-        <!-- modal -->
-        <button class="btn hidden" onclick="customModal.showModal()"></button>
+
+        <!-- Details modal -->
+        
         <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
                 <div id="modal-container" class="font-normal"></div>
@@ -134,8 +135,22 @@
                 </div>
             </div>
         </dialog>
+
+        <!-- adopt modal -->
+        
+        <dialog id="adoptModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div class="text-center font-normal my-10">
+                    <img class="w-20 mx-auto" src="images/congrates.png" alt="">
+                    <h1 class="text-4xl font-bold">Congrates</h1>
+                    <p class="my-4">adoption process is start for your pet</p>
+                    <h1 id="adopt-modal-container" class="text-5xl font-bold">3</h1>
+                </div>
+            </div>
+        </dialog>
     </main>
 
+    <!-- footer section -->
     <footer class="bg-black text-white">
         <div class="w-11/12 mx-auto py-10 lg:flex justify-between text-center lg:text-start font-normal">
             <div>
