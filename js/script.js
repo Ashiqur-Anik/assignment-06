@@ -18,7 +18,6 @@ function lodeAllData() {
             .then(data => handelPetsCard(data.pets))
             .catch(error => console.log(error))
     }, 2000)
-
 }
 
 // lode category
