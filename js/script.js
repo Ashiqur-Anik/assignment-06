@@ -98,7 +98,7 @@ function handelPetsCard(pets) {
                     </div>
                     <div class="mt-4 flex justify-around">
                         <i id="likeBtn-${pet.petId}" onclick="showimg('${pet.image}',${pet.petId})"  class="bi bi-hand-thumbs-up btn text-lg border-1 border-[#0e7a8126]"></i>
-                        <button onclick="adopt()" class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Adopt</button>
+                        <button onclick="adopt()" id="adopt-${pet.petId}" class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Adopt</button>
                         <button onclick="lodeDetails(${pet.petId})" class="btn text-[#0E7A81] text-base border-1 border-[#0e7a8126]">Details</button>
                     </div>
                 </div>
@@ -167,9 +167,9 @@ const showimg = (img, id) => {
     imgContainer.appendChild(imgCard)
 }
 
-function adopt() {
+function adopt(id) {
     const adoptModal = document.getElementById('adopt-modal-container');
-
+console.log(id)
     document.getElementById('adoptModal').showModal();
     let count = 3;
     const time = setInterval(() => {
@@ -178,10 +178,10 @@ function adopt() {
         if (count === 0) {
             document.getElementById('adoptModal').close()    
             clearInterval(time)
-            adoptModal.innerText = 3;
         }
     }, 1000);
     
+    adoptModal.innerText = 3;
 }
 
 categoryBtn()
